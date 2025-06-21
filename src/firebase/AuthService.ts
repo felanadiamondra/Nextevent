@@ -7,7 +7,7 @@ import {
         } 
         from "firebase/auth";
         
-import { firebaseAuth } from "../../firebase";
+import { firebaseAuth } from "./firebase";
 
 // User keep logged in after existing on the browser or closes tab
 setPersistence(firebaseAuth, browserLocalPersistence);

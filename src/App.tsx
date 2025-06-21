@@ -6,10 +6,11 @@ function App() {
 
   return (
     <div className="bg-white">
-      <header className="absolute inset-x-0 top-0 z-50">
+      {/* Fixed header */}
+      <header className="fixed inset-x-0 top-0 z-50 bg-white shadow">
         <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
+            <a href="#" className="-m-1.5 p-1.5 cursor-pointer">
               <span className="sr-only">Your Company</span>
               <img
                 className="h-8 w-auto"
@@ -21,12 +22,12 @@ function App() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 cursor-pointer"
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                className="size-6"
+                className="h-6 w-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
@@ -38,24 +39,31 @@ function App() {
             </button>
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
-            <a href="#" className="text-sm font-semibold text-gray-900">Product</a>
-            <a href="#" className="text-sm font-semibold text-gray-900">Features</a>
-            <a href="#" className="text-sm font-semibold text-gray-900">Marketplace</a>
-            <a href="#" className="text-sm font-semibold text-gray-900">Company</a>
+            <a href="#" className="text-sm font-semibold text-gray-900 cursor-pointer">Product</a>
+            <a href="#" className="text-sm font-semibold text-gray-900 cursor-pointer">Features</a>
+            <a href="#" className="text-sm font-semibold text-gray-900 cursor-pointer">Marketplace</a>
+            <a href="#" className="text-sm font-semibold text-gray-900 cursor-pointer">Company</a>
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="#" className="text-sm font-semibold text-gray-900">
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end gap-x-4">
+            <a href="#" className="text-sm font-semibold text-gray-900 cursor-pointer">
               Log in <span aria-hidden="true">&rarr;</span>
+            </a>
+            {/* Exemple Sign up bouton */}
+            <a
+              href="#"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
+            >
+              Sign up
             </a>
           </div>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-25">
+          <div className="lg:hidden fixed inset-0 z-40 bg-black bg-opacity-25">
             <div className="fixed inset-y-0 right-0 z-50 w-full max-w-sm overflow-y-auto bg-white px-6 py-6 sm:ring-1 sm:ring-gray-900/10">
               <div className="flex items-center justify-between">
-                <a href="#" className="-m-1.5 p-1.5">
+                <a href="#" className="-m-1.5 p-1.5 cursor-pointer">
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
@@ -65,12 +73,12 @@ function App() {
                 </a>
                 <button
                   type="button"
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                  className="-m-2.5 rounded-md p-2.5 text-gray-700 cursor-pointer"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
                   <svg
-                    className="size-6"
+                    className="h-6 w-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
@@ -84,13 +92,14 @@ function App() {
               <div className="mt-6 flow-root">
                 <div className="-my-6 divide-y divide-gray-500/10">
                   <div className="space-y-2 py-6">
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Product</a>
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Features</a>
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Marketplace</a>
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Company</a>
+                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer">Product</a>
+                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer">Features</a>
+                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer">Marketplace</a>
+                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer">Company</a>
                   </div>
                   <div className="py-6">
-                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50">Log in</a>
+                    <a href="#" className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 cursor-pointer">Log in</a>
+                    {/* Tu peux ajouter un lien Sign up ici aussi si tu veux */}
                   </div>
                 </div>
               </div>
@@ -99,10 +108,10 @@ function App() {
         )}
       </header>
 
-      {/* Hero Section */}
-      <div className="relative isolate px-6 pt-14 lg:px-8">
+      {/* Hero Section with padding top to avoid overlap */}
+      <div className="relative isolate px-6 pt-32 lg:px-8">
         <div
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          className="absolute inset-x-0 -top-40 -z-10 pointer-events-none transform-gpu overflow-hidden blur-3xl sm:-top-80"
           aria-hidden="true"
         >
           <div
@@ -117,7 +126,7 @@ function App() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
               Announcing our next round of funding.{' '}
-              <a href="#" className="font-semibold text-indigo-600">
+              <a href="#" className="font-semibold text-indigo-600 cursor-pointer">
                 <span className="absolute inset-0" aria-hidden="true" />
                 Read more <span aria-hidden="true">&rarr;</span>
               </a>
@@ -133,18 +142,18 @@ function App() {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
               >
                 Get started
               </a>
-              <a href="#" className="text-sm font-semibold text-gray-900">
+              <a href="#" className="text-sm font-semibold text-gray-900 cursor-pointer">
                 Learn more <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>
         </div>
         <div
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 pointer-events-none transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
           aria-hidden="true"
         >
           <div

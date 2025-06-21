@@ -1,1 +1,1 @@
-import { firebaseAuth } from "../../firebase";
+import { firebaseAuth } from "../firebase/firebase";
