@@ -5,6 +5,6 @@ import { useAuth } from "../context/AuthContext";
 export default function ProtectedRoute({ children }: { children: JSX.Element }) {
   const { user } = useAuth();
 
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/" replace />;
   return children;
 }

@@ -1,10 +1,21 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";	
+import { useNavigate } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebase";
+import { useAuth } from "../context/AuthContext";
+
 import "../App.css";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const {user} = useAuth();
+
+  // Deconnect and redirect user to login page
+  const handleLogOut = async () => {
+    await signOut(auth);  
+    navigate('/login');
+  }
 
   return (
     <div className="relative bg-white text-gray-800 min-h-screen">
@@ -64,6 +75,31 @@ export default function HomePage() {
             </button>
           </div>
         </nav>
+        <div className="hidden lg:flex items-center gap-3">
+          {user ? (
+            <button
+              onClick={handleLogOut}
+              className="text-sm text-red-500 border border-red-500 px-3 py-1.5 rounded hover:bg-red-50 cursor-pointer"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <button
+                className="text-sm border border-gray-300 px-3 py-1.5 rounded hover:bg-gray-100 cursor-pointer"
+                onClick={() => navigate('/login')}
+              >
+                Log in
+              </button>
+              <button
+                className="text-sm bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-1.5 rounded hover:opacity-90 cursor-pointer"
+                onClick={() => navigate('/signup')}
+              >
+                Sign up
+              </button>
+            </>
+          )}
+        </div>
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
