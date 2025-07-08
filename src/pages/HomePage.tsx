@@ -1,10 +1,11 @@
+// pages/HomePage.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useAuth } from "../context/AuthContext";
-
-import "../App.css";
+import Navbar from "../components/header/Navbar";
+import Footer from "../components/footer/Footer";
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -13,165 +14,103 @@ export default function HomePage() {
 
   const handleLogOut = async () => {
     await signOut(auth);
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
     <div className="relative bg-white text-gray-800 min-h-screen">
-      {/* Header */}
-      <header className="fixed inset-x-0 top-0 z-50 bg-white shadow">
-        <nav className="relative mx-auto flex max-w-7xl items-center justify-between py-3 px-4 lg:px-8" aria-label="Global">
-          {/* Logo */}
-          <div className="flex lg:flex-1">
-            <a href="#" className="flex items-center space-x-2">
-              <img
-                className="h-6 w-auto"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Logo"
-              />
-              <span className="text-lg font-bold">EVENT<span className="text-orange-500">PLAN</span></span>
-            </a>
-          </div>
+      <Navbar type="home" />
 
-          {/* Menu Center */}
-          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 gap-x-8">
-            <a href="#" className="text-sm font-medium text-gray-700 hover:text-orange-500 cursor-pointer">Product</a>
-            <a href="#" className="text-sm font-medium text-gray-700 hover:text-orange-500 cursor-pointer">Features</a>
-            <a href="#" className="text-sm font-medium text-gray-700 hover:text-orange-500 cursor-pointer">Marketplace</a>
-            <a href="#" className="text-sm font-medium text-gray-700 hover:text-orange-500 cursor-pointer">Company</a>
-          </div>
-
-          {/* Desktop Right */}
-          <div className="hidden lg:flex items-center gap-4 relative">
-            {/* Notification */}
-            <button className="text-gray-700 hover:text-orange-500 focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C8.67 6.165 8 7.388 8 9v5.159c0 .538-.214 1.055-.595 1.436L6 17h5" />
-              </svg>
-            </button>
-
-            {/* Mon Compte Dropdown */}
-            <div className="relative group">
-              <button className="text-sm border border-gray-300 px-3 py-1.5 rounded hover:bg-gray-100 cursor-pointer">
-                Mon Compte
-              </button>
-              <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50">
-                {/* Séparateur */}
-                <div className="px-4 py-2 text-sm font-semibold text-gray-700">
-                  My profile
-                </div>
-                <div className="px-4 py-2 text-sm font-semibold text-gray-700">
-                  Account settings
-                </div>
-                <hr className="border-gray-200" />
-                <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  My Likes
-                </button>
-                <button className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                  My Collection
-                </button>
-                <hr className="border-gray-200" />
-                <button
-                  onClick={handleLogOut}
-                  className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden">
-            <button type="button" onClick={() => setMobileMenuOpen(true)} className="inline-flex items-center justify-center p-2 text-gray-700">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </nav>
-
-        {/* Mobile Menu Panel */}
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 z-50 bg-black bg-opacity-25">
-            <div className="fixed inset-y-0 right-0 w-full max-w-sm bg-white p-6 overflow-y-auto">
-              {/* Mobile Header */}
-              <div className="flex items-center justify-between">
-                <a href="#" className="flex items-center space-x-2">
-                  <img className="h-6 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600" alt="Logo" />
-                  <span className="text-lg font-bold">EVENT<span className="text-orange-500">PLAN</span></span>
-                </a>
-                <button onClick={() => setMobileMenuOpen(false)} className="text-gray-700 p-2">
-                  <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-
-              {/* Notification & Mon Compte */}
-              <div className="mt-6 space-y-4">
-                <button className="w-full flex items-center gap-2 text-base font-semibold text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-lg">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C8.67 6.165 8 7.388 8 9v5.159c0 .538-.214 1.055-.595 1.436L6 17h5" />
-                  </svg>
-                  Notifications
-                </button>
-
-                <div className="border rounded-lg p-2 space-y-2 bg-gray-50">
-                  <div className="px-4 py-2 text-sm font-semibold text-gray-700">
-                    My profile
-                  </div>
-                  <div className="px-4 py-2 text-sm font-semibold text-gray-700">
-                    Account settings
-                  </div>      
-                  <hr className="border-gray-200" />
-                  <button className="w-full text-left text-sm text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-lg">My Likes</button>
-                  <button className="w-full text-left text-sm text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-lg">My Collection</button>
-                  <button onClick={handleLogOut} className="w-full text-left text-sm text-red-600 hover:bg-red-50 px-3 py-2 rounded-lg">Logout</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Hero */}
-      <main className="pt-32 px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="md:w-1/2 space-y-6">
-            <h1 className="text-5xl font-bold leading-tight">
-              Effortlessly <br />
-              <span className="text-orange-500">plan your events</span>
+      <main className="pt-32 px-6 lg:px-8 space-y-16">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-orange-100 to-red-100 px-6 py-16 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-10">
+          <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+              Welcome, <span className="text-orange-500">{user?.displayName || "Event Planner"}</span>
             </h1>
-            <p className="text-lg text-gray-600">
-              Make event planning easy with our comprehensive platform. From start to finish, we streamline the process and offer dedicated support to make your event a success.
+            <p className="text-lg text-gray-700">
+              Organize your weddings, conferences, or private parties with confidence. All your tools and professionals in one place.
             </p>
-            <div className="flex gap-4">
-              <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-2 rounded-full hover:opacity-90">
-                Plan an Event
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <button className="bg-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-600 transition">
+                Create New Event
               </button>
-              <button className="border border-gray-300 px-6 py-2 rounded-full hover:bg-gray-100">
-                Find an Expert
+              <button className="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                Browse Services
               </button>
             </div>
           </div>
 
-          <div className="md:w-1/2 grid grid-cols-3 gap-4">
-            <div className="overflow-hidden rounded-2xl shadow-md col-span-2">
-              <img src="./images/event.jpg" alt="Event 1" className="object-cover w-full h-full" />
-            </div>
-            <div className="overflow-hidden rounded-2xl shadow-md">
-              <img src="./images/event.jpg" alt="Event 2" className="object-cover w-full h-full" />
-            </div>
-            <div className="overflow-hidden rounded-2xl shadow-md">
-              <img src="./images/event.jpg" alt="Event 3" className="object-cover w-full h-full" />
-            </div>
-            <div className="overflow-hidden rounded-2xl shadow-md col-span-2">
-              <img src="./images/event.jpg" alt="Event 4" className="object-cover w-full h-full" />
-            </div>
+          <div className="lg:w-1/2 grid grid-cols-2 gap-4">
+            {["event1.jpg", "event2.jpg", "event3.jpg", "event4.jpg"].map((img, index) => (
+              <div
+                key={index}
+                className="overflow-hidden rounded-xl shadow-md"
+              >
+                <img
+                  src={`./images/${img}`}
+                  alt={`Event ${index + 1}`}
+                  className="object-cover w-full h-32 sm:h-40 md:h-48 lg:h-56"
+                />
+              </div>
+            ))}
           </div>
-        </div>
+        </section>
+
+        {/* Services Section */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold">Popular Services</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {['Photographer', 'Venue', 'Catering', 'DJ'].map((service, index) => (
+              <div
+                key={index}
+                className="bg-white p-4 rounded-2xl shadow hover:shadow-md text-center"
+              >
+                <img
+                  src="/images/event.jpg"
+                  alt={service}
+                  className="w-full h-28 object-cover rounded-xl mb-2"
+                />
+                <h3 className="font-semibold">{service}</h3>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* User Events Section */}
+        <section className="space-y-6">
+          <h2 className="text-2xl font-bold">My Upcoming Events</h2>
+          <div className="space-y-4">
+            {[1, 2].map((e) => (
+              <div
+                key={e}
+                className="bg-white p-4 rounded-xl shadow hover:shadow-md flex justify-between items-center"
+              >
+                <div>
+                  <h3 className="font-semibold text-lg">Event Title {e}</h3>
+                  <p className="text-gray-600">Date: 2025-08-0{e} | Status: Planned</p>
+                </div>
+                <button className="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600">
+                  View Details
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Inspiration Section */}
+        <section className="bg-gradient-to-r from-orange-100 to-red-100 p-6 rounded-2xl shadow-inner text-center">
+          <h2 className="text-2xl font-semibold mb-2">Need Inspiration?</h2>
+          <p className="text-gray-700 mb-4">
+            Discover how others plan their events, get inspired by real-life stories, and learn from experts.
+          </p>
+          <button className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600">
+            Explore Ideas
+          </button>
+        </section>
       </main>
+
+      <Footer />
     </div>
   );
 }
