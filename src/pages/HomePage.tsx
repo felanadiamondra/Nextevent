@@ -18,24 +18,25 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative bg-white text-gray-800 min-h-screen">
+    <div className="relative bg-light text-primary min-h-screen">
       <Navbar type="home" />
 
       <main className="pt-32 px-6 lg:px-8 space-y-16">
+
         {/* Hero Section */}
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-orange-100 to-red-100 px-6 py-16 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-10">
+        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-accent via-primary to-secondary px-6 py-16 shadow-xl flex flex-col lg:flex-row items-center justify-between gap-10 text-white">
           <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              Welcome, <span className="text-orange-500">{user?.displayName || "Event Planner"}</span>
+              Welcome, <span className="text-accent">{user?.displayName || "Event Planner"}</span>
             </h1>
-            <p className="text-lg text-gray-700">
+            <p className="text-lg text-white/90">
               Organize your weddings, conferences, or private parties with confidence. All your tools and professionals in one place.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <button className="bg-orange-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-orange-600 transition">
+              <button className="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition">
                 Create New Event
               </button>
-              <button className="bg-white border border-gray-300 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+              <button className="bg-white text-primary px-6 py-3 rounded-full font-semibold hover:bg-light transition">
                 Browse Services
               </button>
             </div>
@@ -59,19 +60,19 @@ export default function HomePage() {
 
         {/* Services Section */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold">Popular Services</h2>
+          <h2 className="text-2xl font-bold text-primary">Popular Services</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {['Photographer', 'Venue', 'Catering', 'DJ'].map((service, index) => (
               <div
                 key={index}
-                className="bg-white p-4 rounded-2xl shadow hover:shadow-md text-center"
+                className="bg-white p-4 rounded-2xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-in-out text-center"
               >
                 <img
                   src="/images/event.jpg"
                   alt={service}
                   className="w-full h-28 object-cover rounded-xl mb-2"
                 />
-                <h3 className="font-semibold">{service}</h3>
+                <h3 className="font-semibold text-secondary">{service}</h3>
               </div>
             ))}
           </div>
@@ -79,18 +80,18 @@ export default function HomePage() {
 
         {/* User Events Section */}
         <section className="space-y-6">
-          <h2 className="text-2xl font-bold">My Upcoming Events</h2>
+          <h2 className="text-2xl font-bold text-primary">My Upcoming Events</h2>
           <div className="space-y-4">
             {[1, 2].map((e) => (
               <div
                 key={e}
-                className="bg-white p-4 rounded-xl shadow hover:shadow-md flex justify-between items-center"
+                className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-in-out flex justify-between items-center"
               >
                 <div>
-                  <h3 className="font-semibold text-lg">Event Title {e}</h3>
-                  <p className="text-gray-600">Date: 2025-08-0{e} | Status: Planned</p>
+                  <h3 className="font-semibold text-lg text-primary">Event Title {e}</h3>
+                  <p className="text-secondary">Date: 2025-08-0{e} | Status: Planned</p>
                 </div>
-                <button className="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600">
+                <button className="bg-accent text-white px-4 py-2 rounded-full hover:bg-yellow-400 transition">
                   View Details
                 </button>
               </div>
@@ -99,15 +100,16 @@ export default function HomePage() {
         </section>
 
         {/* Inspiration Section */}
-        <section className="bg-gradient-to-r from-orange-100 to-red-100 p-6 rounded-2xl shadow-inner text-center">
+        <section className="bg-gradient-to-r from-secondary via-primary to-accent p-6 rounded-2xl shadow-inner text-center text-white">
           <h2 className="text-2xl font-semibold mb-2">Need Inspiration?</h2>
-          <p className="text-gray-700 mb-4">
+          <p className="text-white/90 mb-4">
             Discover how others plan their events, get inspired by real-life stories, and learn from experts.
           </p>
-          <button className="bg-orange-500 text-white px-6 py-2 rounded-full hover:bg-orange-600">
+          <button className="bg-white text-primary px-6 py-2 rounded-full hover:bg-light transition">
             Explore Ideas
           </button>
         </section>
+
       </main>
 
       <Footer />
